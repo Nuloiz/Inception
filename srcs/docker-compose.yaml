@@ -1,0 +1,20 @@
+services: 
+  website:
+    image: nginx:1.23
+    container_name: website
+    volumes:
+      - /home/nschutz/42wolfsburg/42projects/Inception/srcs/opt/website/html:/usr/share/nginx/html
+      - /home/nschutz/42wolfsburg/42projects/Inception/srcs/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8000:80"
+    restart: always
+    
+  nginx:
+    build:
+      context: ./requirements/nginx
+    container_name: nginx
+    ports:
+      - "8080:80" 
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html  
+    restart: always
