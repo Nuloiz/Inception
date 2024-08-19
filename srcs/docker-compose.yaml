@@ -13,8 +13,25 @@ services:
       - nginx_key
     restart: always
 
+  wordpress:
+    build:
+      context: ./requirements/WordPress
+    container_name: wordpress
+    volumes:
+      - ./requirements/WordPress:/var/www/html
+    expose:
+      - "9000"
+    restart: always
+    env_file:
+      - ../secrets/.env
+    #volumes:
+    #  - ./requirements/WordPress/html:/var/www/html  # Mount HTML content
+    #  - ./requirements/WordPress/wp-config.php:/var/www/html/wp-config.php  # Mount WP config
+
 secrets:
   nginx_crt:
     file: ../secrets/nginx/nginx.crt
   nginx_key:
     file: ../secrets/nginx/nginx.key
+  wordpress_db_host:
+    file: ../secrets/.env/db_hos
