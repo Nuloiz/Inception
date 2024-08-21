@@ -24,9 +24,6 @@ services:
     restart: always
     env_file:
       - ../secrets/.env
-    #volumes:
-    #  - ./requirements/WordPress/html:/var/www/html  # Mount HTML content
-    #  - ./requirements/WordPress/wp-config.php:/var/www/html/wp-config.php  # Mount WP config
 
 secrets:
   nginx_crt:

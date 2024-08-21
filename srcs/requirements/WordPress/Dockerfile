@@ -24,6 +24,15 @@ RUN apt-get update && apt-get install -y \
 # Create the /var/www/html directory
 WORKDIR /var/www/html/ 
 
+# Copy the download script into the container
+COPY /tools/download_wp.sh /usr/local/bin/download_wp.sh
+
+# Make the script executable
+RUN chmod +x /usr/local/bin/download_wp.sh
+
+# Run the script to download and set up WordPress
+RUN /usr/local/bin/download_wp.sh
+
 # Copy custom www.conf to the correct directory
 COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/
 
