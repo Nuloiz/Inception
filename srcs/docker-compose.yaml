@@ -6,7 +6,7 @@ services:
     ports:
       - "443:443"  
     volumes:
-      - ./requirements/nginx/html:/usr/share/nginx/html  # Mount HTML content
+      - ./requirements/WordPress:/var/www/html
       - ./requirements/nginx/default.conf:/etc/nginx/conf.d/default.conf  # Mount NGINX config
     secrets:
       - nginx_crt
@@ -19,8 +19,8 @@ services:
     container_name: wordpress
     volumes:
       - ./requirements/WordPress:/var/www/html
-    expose:
-      - "9000"
+    ports:
+      - "9000:9000"
     restart: always
     env_file:
       - ../secrets/.env
