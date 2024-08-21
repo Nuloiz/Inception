@@ -15,12 +15,15 @@ WHITE = \033[0;97m
 all: up
 
 up:
-			@docker-compose -f $(DOCKER_COMPOSE_FILE) up -d --build
+			@docker-compose -f $(DOCKER_COMPOSE_FILE) up  --build
 			@echo "$(GREEN)Docker Compose up and running!$(DEF_COLOR)"
 
 down:
 			@docker-compose -f $(DOCKER_COMPOSE_FILE) down
 			@echo "$(CYAN)Docker Compose stopped!$(DEF_COLOR)"
+
+ps:
+			@docker-compose -f $(DOCKER_COMPOSE_FILE) ps
 
 logs:
 			@docker-compose -f $(DOCKER_COMPOSE_FILE) logs -f

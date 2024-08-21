@@ -5,6 +5,7 @@ FROM debian:buster
 ENV WORDPRESS_VERSION 5.8.1
 
 # Install PHP, PHP-FPM, and necessary PHP extensions
+    
 RUN apt-get update && apt-get install -y \
     php7.3 \
     php7.3-fpm \
@@ -20,6 +21,9 @@ RUN apt-get update && apt-get install -y \
     unzip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# Create necessary directories
+RUN mkdir -p /run/php
 
 # Create the /var/www/html directory
 WORKDIR /var/www/html/ 
@@ -40,4 +44,4 @@ COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/
 EXPOSE 9000
 
 # Start PHP-FPM
-CMD ["php-fpm7.3"]
+CMD ["/usr/sbin/php-fpm7.3", "-F"]
