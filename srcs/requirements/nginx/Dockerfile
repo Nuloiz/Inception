@@ -1,5 +1,5 @@
 # Use Debian Buster as the base image
-FROM debian:buster
+FROM debian:bullseye
 
 # Install Nginx
 RUN apt-get update && apt-get install -y \

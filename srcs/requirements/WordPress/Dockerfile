@@ -1,5 +1,5 @@
 # Use Debian Buster as the base image
-FROM debian:buster
+FROM debian:bullseye
 
 # Set the WordPress version
 ENV WORDPRESS_VERSION 5.8.1
@@ -7,16 +7,16 @@ ENV WORDPRESS_VERSION 5.8.1
 # Install PHP, PHP-FPM, and necessary PHP extensions
     
 RUN apt-get update && apt-get install -y \
-    php7.3 \
-    php7.3-fpm \
-    php7.3-mysql \
-    php7.3-zip \
-    php7.3-gd \
-    php7.3-mbstring \
-    php7.3-curl \
-    php7.3-xml \
-    php7.3-json \
-    php7.3-opcache \
+    php7.4 \
+    php7.4-fpm \
+    php7.4-mysql \
+    php7.4-zip \
+    php7.4-gd \
+    php7.4-mbstring \
+    php7.4-curl \
+    php7.4-xml \
+    php7.4-json \
+    php7.4-opcache \
     curl \
     unzip \
     && apt-get clean \
@@ -37,6 +37,8 @@ RUN chmod +x /usr/local/bin/download_wp.sh
 # Run the script to download and set up WordPress
 RUN /usr/local/bin/download_wp.sh
 
+#ENTRYPOINT [ "/tools/download_wp.sh" ]
+
 # Copy custom www.conf to the correct directory
 COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/
 
@@ -44,4 +46,4 @@ COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/
 EXPOSE 9000
 
 # Start PHP-FPM
-CMD ["/usr/sbin/php-fpm7.3", "-F"]
+CMD ["/usr/sbin/php-fpm7.4", "-F"]
