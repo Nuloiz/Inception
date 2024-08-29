@@ -28,16 +28,9 @@ RUN mkdir -p /run/php
 # Create the /var/www/html directory
 WORKDIR /var/www/html/ 
 
-# Copy the download script into the container
-COPY /tools/download_wp.sh /usr/local/bin/download_wp.sh
-
-# Make the script executable
+COPY ./tools/download_wp.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/download_wp.sh
-
-# Run the script to download and set up WordPress
-RUN /usr/local/bin/download_wp.sh
-
-#ENTRYPOINT [ "/tools/download_wp.sh" ]
+ENTRYPOINT ["/usr/local/bin/download_wp.sh"]
 
 # Copy custom www.conf to the correct directory
 COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/
