@@ -10,6 +10,10 @@ RUN apt-get update && apt-get install -y \
 # Copy the custom Nginx configuration file
 COPY default.conf /etc/nginx/conf.d/default.conf
 
+#to test nginx is working
+RUN mkdir -p /var/www/html/test
+RUN mv /var/www/html/index.nginx-debian.html /var/www/html/test/index.html
+
 # Expose port 9000
 EXPOSE 9000
 

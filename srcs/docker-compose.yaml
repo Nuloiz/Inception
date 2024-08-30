@@ -16,8 +16,19 @@ services:
     build:
       context: ./requirements/WordPress
     container_name: wordpress
+    expose:
+      - "9000"
+    restart: always
+    env_file:
+      - ../secrets/.env
+
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+    container_name: mariadb
+    #image: mariadb
     ports:
-      - "9000:9000"
+      - "3306:3306"
     restart: always
     env_file:
       - ../secrets/.env
