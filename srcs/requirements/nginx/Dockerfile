@@ -15,7 +15,7 @@ RUN mkdir -p /var/www/html/test
 RUN cp /var/www/html/index.nginx-debian.html /var/www/html/test/index.html
 
 # Expose port 9000
-EXPOSE 9000
+EXPOSE 443
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]

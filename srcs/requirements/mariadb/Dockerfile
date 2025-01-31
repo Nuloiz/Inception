@@ -6,3 +6,4 @@ RUN apt-get install -y mariadb-server \
     vim \
     && rm -rf /var/lib/apt/lists/*
 
+EXPOSE 3306

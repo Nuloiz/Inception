@@ -3,6 +3,9 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
   <component name="CMakeRunConfigurationManager">
     <generated />
   </component>
@@ -12,7 +15,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cad470d-40a4-4272-95db-5c5a8f3c7eac" name="Changes" comment="Inception feat: Creating repository" />
+    <list default="true" id="0cad470d-40a4-4272-95db-5c5a8f3c7eac" name="Changes" comment="Inception feat: Creating repository">
+      <change beforePath="$PROJECT_DIR$/.idea/Inception.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,18 +92,20 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/nschutz/42wolfsburg/42projects/ft_irc",
+    "last_opened_file_path": "/home/nschutz/Coding/42WoB/ft_transcendence",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -126,6 +136,8 @@
       <workItem from="1716541263230" duration="1403000" />
       <workItem from="1716548598260" duration="2536000" />
       <workItem from="1716801096089" duration="715000" />
+      <workItem from="1727172782833" duration="834000" />
+      <workItem from="1729769980916" duration="34000" />
     </task>
     <task id="LOCAL-00001" summary="Inception feat: Creating repository">
       <option name="closed" value="true" />

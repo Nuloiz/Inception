@@ -15,21 +15,21 @@ WHITE = \033[0;97m
 all: up
 
 up:
-			@docker-compose -f $(DOCKER_COMPOSE_FILE) up --build
+			@docker compose -f $(DOCKER_COMPOSE_FILE) up --build
 			@echo "$(GREEN)Docker Compose up and running!$(DEF_COLOR)"
 
 down:
-			@docker-compose -f $(DOCKER_COMPOSE_FILE) down
+			@docker compose  -f $(DOCKER_COMPOSE_FILE) down
 			@echo "$(CYAN)Docker Compose stopped!$(DEF_COLOR)"
 
 ps:
-			@docker-compose -f $(DOCKER_COMPOSE_FILE) ps
+			@docker compose -f $(DOCKER_COMPOSE_FILE) ps
 
 logs:
-			@docker-compose -f $(DOCKER_COMPOSE_FILE) logs -f
+			@docker compose -f $(DOCKER_COMPOSE_FILE) logs -f
 
 clean:
-			@docker-compose -f $(DOCKER_COMPOSE_FILE) down -v --rmi all --remove-orphans
+			@docker compose -f $(DOCKER_COMPOSE_FILE) down -v --rmi all --remove-orphans
 			@echo "$(BLUE)Cleaned up Docker containers, volumes, and images!$(DEF_COLOR)"
 
 re:         clean up

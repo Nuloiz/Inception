@@ -32,7 +32,7 @@ services:
     build:
       context: ./requirements/mariadb
     container_name: mariadb
-    #image: mariadb
+    image: mariadb
     ports:
       - "3306:3306"
     restart: always

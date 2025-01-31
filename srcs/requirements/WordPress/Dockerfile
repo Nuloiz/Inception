@@ -33,7 +33,9 @@ RUN chmod +x /usr/local/bin/download_wp.sh
 ENTRYPOINT ["/usr/local/bin/download_wp.sh"]
 
 # Copy custom www.conf to the correct directory
-COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/
+COPY /conf/www.conf /etc/php/7.4/fpm/pool.d/
+
+RUN chown -R www-data:www-data /var/www/html
 
 # Expose port 9000
 EXPOSE 9000
