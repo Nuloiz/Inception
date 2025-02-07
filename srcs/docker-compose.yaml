@@ -38,6 +38,8 @@ services:
     restart: always
     env_file:
       - ../secrets/.env
+    networks:
+      - wp_network
 
 secrets:
   nginx_crt:
@@ -49,3 +51,4 @@ secrets:
 
 networks:
   wp_network:
+    name: wp_network
