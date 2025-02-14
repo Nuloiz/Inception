@@ -12,7 +12,7 @@ services:
     networks:
       - wp_network
     volumes:
-      - ./requirements/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./requirements/nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
     secrets:
       - nginx_crt
       - nginx_key

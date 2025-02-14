@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && apt-get install -y curl
 
 # Copy the custom Nginx configuration file
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 
 #to test nginx is working
 RUN mkdir -p /var/www/html/test
