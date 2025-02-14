@@ -13,9 +13,6 @@ services:
       - wp_network
     volumes:
       - ./requirements/nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
-    secrets:
-      - nginx_crt
-      - nginx_key
     restart: always
 
   wordpress:
@@ -42,12 +39,6 @@ services:
       - .env
     networks:
       - wp_network
-
-secrets:
-  nginx_crt:
-    file: ../secrets/nginx/nginx.crt
-  nginx_key:
-    file: ../secrets/nginx/nginx.key
 
 networks:
   wp_network:
