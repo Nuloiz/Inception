@@ -4,7 +4,7 @@ FROM debian:bullseye
 # Set the WordPress version
 ENV WORDPRESS_VERSION 5.8.1
 
-# Install PHP, PHP-FPM, and necessary PHP extensions
+# Install PHP, PHP-FPM, and necessary PHP extensions + mariadb-client optionally
 RUN apt-get update && apt-get install -y \
     php7.4 \
     php7.4-fpm \
@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     php7.4-opcache \
     curl \
     unzip \
+    mariadb-client \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

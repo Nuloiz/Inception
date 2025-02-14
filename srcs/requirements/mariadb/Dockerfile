@@ -16,5 +16,8 @@ RUN chmod +x /usr/local/bin/mariadb.sh
 # Expose MariaDB port
 EXPOSE 3306
 
+RUN sed -i 's/^bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
+
+
 # Start MariaDB with the init script
 CMD ["/usr/local/bin/mariadb.sh"]
