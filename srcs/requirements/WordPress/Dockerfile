@@ -43,9 +43,6 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp
 
-# Set correct ownership and permissions for WordPress
-RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
-
 # Expose the PHP-FPM port
 EXPOSE 9000
 

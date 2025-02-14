@@ -13,6 +13,25 @@ check_db() {
     echo "Database is ready!"
 }
 
+set_permissions() {
+    echo "Setting correct ownership and permissions..."
+
+    # Ensure /var/www/html directory and its contents are owned by www-data
+    chown -R www-data:www-data /var/www/html
+
+    # Ensure wp-config.php has the correct permissions (644)
+    if [ -f /var/www/html/wp-config.php ]; then
+        chmod 644 /var/www/html/wp-config.php
+    fi
+
+    # Ensure the wp-content directory is also owned by www-data
+    chown -R www-data:www-data /var/www/html/wp-content
+    chmod -R 755 /var/www/html/wp-content
+
+    # Set the proper directory permissions for /var/www/html
+    chmod -R 755 /var/www/html
+}
+
 # Check if WordPress is already installed
 if [ -f ./wp-config.php ] && wp core is-installed --allow-root; then
     echo "WordPress is already installed."
@@ -52,6 +71,9 @@ else
 
     echo "WordPress installation complete."
 fi
+
+# Set correct ownership and permissions after WordPress setup
+set_permissions
 
 # Execute the container's CMD
 exec "$@"
