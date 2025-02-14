@@ -15,7 +15,7 @@ WHITE = \033[0;97m
 all: up
 
 up:
-			@docker compose -f $(DOCKER_COMPOSE_FILE) up --build
+			@docker compose -f $(DOCKER_COMPOSE_FILE) up --build 
 			@echo "$(GREEN)Docker Compose up and running!$(DEF_COLOR)"
 
 down:

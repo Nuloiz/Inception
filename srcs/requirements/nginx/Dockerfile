@@ -7,6 +7,9 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+#Only for testing
+RUN apt-get update && apt-get install -y curl
+
 # Copy the custom Nginx configuration file
 COPY default.conf /etc/nginx/conf.d/default.conf
 

@@ -35,7 +35,12 @@ ENTRYPOINT ["/usr/local/bin/download_wp.sh"]
 # Copy custom www.conf to the correct directory
 COPY /conf/www.conf /etc/php/7.4/fpm/pool.d/
 
-RUN chown -R www-data:www-data /var/www/html
+# Only for testing begin
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/local/bin/wp
+# Only for testing end
+RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
 # Expose port 9000
 EXPOSE 9000
