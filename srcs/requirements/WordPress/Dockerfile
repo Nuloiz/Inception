@@ -5,7 +5,6 @@ FROM debian:bullseye
 ENV WORDPRESS_VERSION 5.8.1
 
 # Install PHP, PHP-FPM, and necessary PHP extensions
-    
 RUN apt-get update && apt-get install -y \
     php7.4 \
     php7.4-fpm \
@@ -25,24 +24,28 @@ RUN apt-get update && apt-get install -y \
 # Create necessary directories
 RUN mkdir -p /run/php
 
-# Create the /var/www/html directory
-WORKDIR /var/www/html/ 
+# Create the /var/www/html directory for WordPress
+WORKDIR /var/www/html/
 
+# Copy the WordPress download script and make it executable
 COPY ./tools/download_wp.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/download_wp.sh
+
+# Set entrypoint to download and install WordPress
 ENTRYPOINT ["/usr/local/bin/download_wp.sh"]
 
-# Copy custom www.conf to the correct directory
-COPY /conf/www.conf /etc/php/7.4/fpm/pool.d/
+# Copy custom www.conf (PHP-FPM pool configuration)
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
 
-# Only for testing begin
+# Optionally, install WP CLI for managing WordPress
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp
-# Only for testing end
+
+# Set correct ownership and permissions for WordPress
 RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
-# Expose port 9000
+# Expose the PHP-FPM port
 EXPOSE 9000
 
 # Start PHP-FPM
