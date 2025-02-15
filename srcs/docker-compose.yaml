@@ -37,6 +37,8 @@ services:
     image: mariadb
     ports:
       - "3306:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
     restart: always
     env_file:
       - .env
@@ -49,3 +51,14 @@ networks:
 
 volumes:
   wordpress-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/login/data/wordpress
+      o: bind
+  mariadb-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/login/data/mariadb
+      o: bind

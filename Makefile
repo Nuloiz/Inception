@@ -36,7 +36,7 @@ fclean:		clean
 			@docker volume prune -f
 			@echo "$(RED)Cleaned up Docker volumes!$(DEF_COLOR)"
 
-re:         clean up
+re:         fclean up
 			@echo "$(GREEN)Cleaned and rebuilt Docker Compose setup for $(NAME)!$(DEF_COLOR)"
 
 
