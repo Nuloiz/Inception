@@ -13,6 +13,7 @@ services:
       - wp_network
     volumes:
       - ./requirements/nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
+      - wordpress-data:/var/www/html
     restart: always
 
   wordpress:
@@ -21,6 +22,8 @@ services:
     container_name: wordpress
     ports:
       - "9000:9000"
+    volumes:
+      - wordpress-data:/var/www/html
     restart: always
     env_file:
       - .env
@@ -43,3 +46,6 @@ services:
 networks:
   wp_network:
     name: wp_network
+
+volumes:
+  wordpress-data:
