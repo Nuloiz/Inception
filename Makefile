@@ -31,6 +31,10 @@ logs:
 clean:
 			@docker compose -f $(DOCKER_COMPOSE_FILE) down -v --rmi all --remove-orphans
 			@echo "$(BLUE)Cleaned up Docker containers, volumes, and images!$(DEF_COLOR)"
+			
+fclean:		clean
+			@docker volume prune -f
+			@echo "$(RED)Cleaned up Docker volumes!$(DEF_COLOR)"
 
 re:         clean up
 			@echo "$(GREEN)Cleaned and rebuilt Docker Compose setup for $(NAME)!$(DEF_COLOR)"

@@ -22,29 +22,29 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Create necessary directories
-RUN mkdir -p /run/php
-
-# Create the /var/www/html directory for WordPress
+# Set working directory (ensure it's set before copying files)
 WORKDIR /var/www/html/
+
+# Create necessary directories with correct permissions
+RUN mkdir -p /run/php
 
 # Copy the WordPress download script and make it executable
 COPY ./tools/download_wp.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/download_wp.sh
 
-# Set entrypoint to download and install WordPress
-ENTRYPOINT ["/usr/local/bin/download_wp.sh"]
-
-# Copy custom www.conf (PHP-FPM pool configuration)
+# Copy custom PHP-FPM pool configuration
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
 
-# Optionally, install WP CLI for managing WordPress
+# Install WP-CLI
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp
 
-# Expose the PHP-FPM port
+# Expose PHP-FPM port
 EXPOSE 9000
 
-# Start PHP-FPM
+# Set entrypoint to download and install WordPress
+ENTRYPOINT ["/usr/local/bin/download_wp.sh"]
+
+# Start PHP-FPM in foreground
 CMD ["/usr/sbin/php-fpm7.4", "-F"]

@@ -30,6 +30,12 @@ set_permissions() {
 
     # Set the proper directory permissions for /var/www/html
     chmod -R 755 /var/www/html
+
+    # Ensure proper permissions for the socket directory
+    chown -R www-data:www-data /run/php
+    chmod 755 /run/php
+
+    echo "Permissions set!"
 }
 
 # Check if WordPress is already installed
@@ -72,8 +78,18 @@ else
     echo "WordPress installation complete."
 fi
 
+# Stop any existing PHP-FPM process (if running)
+#pkill -9 php-fpm7.4 2>/dev/null || true
+
+# Ensure no stale PHP-FPM processes are running for Testing
+#rm -f /run/php/php7.4-fpm.sock
+
 # Set correct ownership and permissions after WordPress setup
 set_permissions
+echo "WordPress setup complete."
+
+# Start PHP-FPM for Testing
+#php-fpm7.4 -D
 
 # Execute the container's CMD
 exec "$@"

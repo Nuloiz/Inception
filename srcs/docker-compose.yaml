@@ -19,8 +19,8 @@ services:
     build:
       context: ./requirements/WordPress
     container_name: wordpress
-    expose:
-      - "9000"
+    ports:
+      - "9000:9000"
     restart: always
     env_file:
       - .env
