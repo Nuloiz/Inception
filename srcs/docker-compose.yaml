@@ -54,11 +54,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/login/data/wordpress
+      device: /home/nschutz/data/wordpress
       o: bind
   mariadb-data:
     driver: local
     driver_opts:
       type: none
-      device: /home/login/data/mariadb
+      device: /home/nschutz/data/mariadb
       o: bind

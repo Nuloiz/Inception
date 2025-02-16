@@ -39,6 +39,7 @@ set_permissions() {
 }
 
 # Check if WordPress is already installed
+sleep 10
 if [ -f ./wp-config.php ] && wp core is-installed --allow-root; then
     echo "WordPress is already installed."
 else
