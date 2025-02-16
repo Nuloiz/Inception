@@ -16,15 +16,25 @@ mysqld_safe --skip-networking &
 sleep 5  # Give the server time to start
 
 # Run SQL commands to set up the database and user
-echo "Creating WordPress database and user..."
 mysql -u root -p"$MYSQL_ROOT_PASSWORD" <<EOF
-CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;
-CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
-GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION;
+-- Create database if not exists
+CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\`;
+
+-- Remove any existing users with the same name (to avoid conflicts)
+DROP USER IF EXISTS '$MYSQL_USER'@'localhost';
+DROP USER IF EXISTS '$MYSQL_USER'@'%';
+
+-- Create user with access from any host
+CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
+
+-- Grant privileges to the user
+GRANT ALL PRIVILEGES ON \`$MYSQL_DATABASE\`.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION;
+
+-- Ensure changes are saved
 FLUSH PRIVILEGES;
 EOF
 
-# Stop MariaDB so it can be started properly by the container
+# Stop MariaDB to allow proper container startup
 echo "Shutting down MariaDB..."
 mysqladmin -u root -p"$MYSQL_ROOT_PASSWORD" shutdown
 
