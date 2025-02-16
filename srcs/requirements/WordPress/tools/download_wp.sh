@@ -69,11 +69,16 @@ else
 
     # Run WordPress installation
     wp core install --url="https://localhost" \
+        --url="$DOMAIN_NAME" \
         --title="My WordPress Site" \
         --admin_user="$WORDPRESS_ADMIN_USER" \
         --admin_password="$WORDPRESS_ADMIN_PASSWORD" \
         --admin_email="admin@example.com" \
         --allow-root
+
+    if ! wp user get "$WORDPRESS_USER" --allow-root > /dev/null 2>&1; then
+            wp user create "$WORDPRESS_USER" --role=author --user_pass="$WORDPRESS_PASSWORD" --allow-root
+        fi
 
     echo "WordPress installation complete."
 fi
