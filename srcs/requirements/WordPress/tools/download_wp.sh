@@ -68,7 +68,7 @@ else
     fi
 
     # Run WordPress installation
-    wp core install --url="https://localhost" \
+    wp core install \
         --url="$DOMAIN_NAME" \
         --title="My WordPress Site" \
         --admin_user="$WORDPRESS_ADMIN_USER" \
