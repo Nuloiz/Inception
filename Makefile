@@ -36,6 +36,7 @@ fclean:		clean
 			@docker system prune --all --force --volumes
 			@docker network prune --force
 			@docker volume prune --force
+			sudo rm -rf ../../../nschutz/data/wordpress/* ../../../nschutz/data/mariadb/*
 			@echo "$(RED)Cleaned up Docker volumes!$(DEF_COLOR)"
 
 re:         fclean up
