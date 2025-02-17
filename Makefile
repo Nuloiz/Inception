@@ -33,7 +33,9 @@ clean:
 			@echo "$(BLUE)Cleaned up Docker containers, volumes, and images!$(DEF_COLOR)"
 			
 fclean:		clean
-			@docker volume prune -f
+			@docker system prune --all --force --volumes
+			@docker network prune --force
+			@docker volume prune --force
 			@echo "$(RED)Cleaned up Docker volumes!$(DEF_COLOR)"
 
 re:         fclean up
